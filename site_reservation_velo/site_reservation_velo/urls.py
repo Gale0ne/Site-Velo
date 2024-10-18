@@ -21,4 +21,5 @@ from reservations import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('reservations/', views.page_reservations),
+    path('ajout_velo/', views.ajout_velo),
 ]

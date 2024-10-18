@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+class Reservation(models.Model):
+    eleve = models.fields.CharField(max_length=100)
+    heure_reservation = models.DateField()
