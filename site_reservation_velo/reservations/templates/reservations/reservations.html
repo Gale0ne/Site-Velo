@@ -1,54 +1,12 @@
 {% extends 'reservations/base.html' %}
 {% block content %}
 <h1>Site Reservations Vélyce</h1>
- <table>
-    <caption>Calandrier </caption>
-    <tr>
-        <th>
-            Lundi
-        </th>
-        <th>
-            Mardi
-        </th>
-        <th>
-            Mercredi
-        </th>
-        <th>
-            Jeudi
-        </th>
-        <th>
-            Vendredi
-        </th>
-        <th>
-            Samedi
-        </th>
-        <th>
-            Dimanche
-        </th>
-    </tr>
-    <tr>
-        <td>
-            yo
-        </td>
-        <td>
-            yo
-        </td>
-        <td>
-
-        </td>
-        <td>
-
-        </td>
-        <td>
-
-        </td>
-        <td>
-
-        </td>
-        <td>
-
-        </td>
-
-    </tr>
- </table>
+ <p>
+    Voici la liste des reservations : 
+    <ul>
+    {% for reservation in reservations%}
+    <li>{{ reservation.eleve }}</li>
+    {% endfor %}
+    </ul>
+ </p>
  {% endblock %}
