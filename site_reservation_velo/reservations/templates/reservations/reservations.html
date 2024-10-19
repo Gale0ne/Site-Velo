@@ -3,10 +3,21 @@
 <h1>Site Reservations Vélyce</h1>
  <p>
     Voici la liste des reservations : 
-    <ul>
-    {% for reservation in reservations%}
-    <li>{{ reservation.eleve }}</li>
-    {% endfor %}
-    </ul>
  </p>
+ <table>
+   <tr>
+      <th>Eleve</th>
+      <th>Vélo Choisi</th>
+      <th>Début Réservation</th>
+      <th>Fin reservation</th>
+   </tr>
+   {% for reservation in reservations%}
+   <tr>
+      <td>{{reservation.eleve}}</td>
+      <td>{{reservation.velo}}</td>
+      <td>{{reservation.start_time}}</td>
+      <td>{{reservation.end_time}}</td>
+   </tr>
+   {% endfor %}
+ </table>
  {% endblock %}
