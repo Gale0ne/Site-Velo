@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('reservations/', views.page_reservations),
     path('ajout_velo/', views.ajout_velo),
-    path('page_test/', views.page_test),
+    path('page_test/', views.page_test, name='page_test'),
 ]
