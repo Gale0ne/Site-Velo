@@ -21,7 +21,7 @@ from reservations import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('reservations/', views.page_reservations, name='page_reservation'),
-    path('ajout_velo/', views.ajout_velo),
+    path('ajout_reservation/', views.ajout_velo, name='ajout_reservation'),
     path('page_test/', views.page_test, name='page_test'),
-    path('rendre_velo/', views.return_velo),
+    path('rendre_velo/', views.return_velo, name='return_bike'),
 ]

@@ -1,15 +1,20 @@
 {% extends 'reservations/base.html' %}
 {% block content %}
-<h1>Site Reservations Vélyce</h1>
- <p>
-    Voici la liste des reservations : 
- </p>
+<header>
+   <h1>Site de Réservations Vélyce</h1>
+   <nav>
+      <a href="{% url 'return_bike' %}">Retourner un vélo</a>
+      <a href="{% url 'ajout_reservation'%}">Ajouter une réservation</a>
+   </nav>
+</header>
+<main>
  <table>
+   <caption>Voici la liste des réservations</caption>
    <tr>
-      <th>Eleve</th>
+      <th>Élève</th>
       <th>Vélo Choisi</th>
       <th>Début Réservation</th>
-      <th>Fin reservation</th>
+      <th>Fin Réservation</th>
    </tr>
    {% for reservation in reservations%}
    <tr>
@@ -20,4 +25,5 @@
    </tr>
    {% endfor %}
  </table>
+</main>
  {% endblock %}

@@ -7,3 +7,23 @@ table {
     border-collapse: collapse;
     margin: auto;
 }
+
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    color: tan;
+}
+
+header {
+    background-color: #3D4435;
+    border-radius: 5px;
+    color: tan;
+}
+
+nav a:visited {
+    color: tan;
+}
