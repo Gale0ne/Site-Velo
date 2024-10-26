@@ -1,0 +1,12 @@
+{% extends 'reservations/base.html' %}
+{% block content %}
+
+<h1>Retourner un vélo</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Retourner le vélo</button>
+</form>
+
+{% endblock %}

@@ -11,3 +11,9 @@ class ReservationForm(forms.ModelForm):
         if not velo.est_disponible:
             raise forms.ValidationError("Ce vélo est déjà reservé.")
         return velo
+
+class ReturnVeloForm(forms.Form):
+    velo = forms.ModelChoiceField(
+        queryset=Velo.objects.filter(est_disponible=False),  
+        label="Sélectionnez un vélo à retourner"
+    )

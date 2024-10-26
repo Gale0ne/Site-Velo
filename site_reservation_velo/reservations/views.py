@@ -1,8 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from reservations.models import Reservation, Velo
-from reservations.forms import ReservationForm
-from django.shortcuts import redirect
+from reservations.forms import ReservationForm, ReturnVeloForm
 
 def page_reservations(request):
     reservations = Reservation.objects.all()
@@ -25,3 +24,15 @@ def ajout_velo(request):
 def page_test(request):
     reservations = Reservation.objects.all()
     return HttpResponse(f'Hello C moi {reservations[0].eleve} ')
+
+def return_velo(request):
+    if request.method == 'POST':
+        form = ReturnVeloForm(request.POST)
+        if form.is_valid():
+            velo = form.cleaned_data['velo']
+            reservation = get_object_or_404(Reservation, velo=velo, end_time__isnull=True)
+            reservation.return_velo()
+            return redirect('page_reservation')
+    else: 
+        form = ReturnVeloForm()
+    return render(request, 'reservations/return_velo.html', {'form' : form}) 

@@ -20,4 +20,3 @@ class Reservation(models.Model):
         self.velo.est_disponible = True
         self.save()
         self.velo.save()
-    
