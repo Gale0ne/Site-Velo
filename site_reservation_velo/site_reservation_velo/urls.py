@@ -20,7 +20,7 @@ from reservations import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('reservations/', views.page_reservations),
+    path('reservations/', views.page_reservations, name='page_reservation'),
     path('ajout_velo/', views.ajout_velo),
     path('page_test/', views.page_test, name='page_test'),
 ]

@@ -16,7 +16,7 @@ def ajout_velo(request):
             reservation.velo.est_disponible = False
             reservation.velo.save()
             reservation.save()
-            return redirect("page_test")
+            return redirect("page_reservation")
     else:
         form = ReservationForm()
 
