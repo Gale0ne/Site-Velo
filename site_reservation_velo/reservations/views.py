@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from reservations.models import Reservation, Velo
-from reservations.forms import ReservationForm, ReturnVeloForm
+from reservations.forms import ReservationForm, ReturnVeloForm, LoginForm
+from django.contrib.auth import login, authenticate
 
 def page_reservations(request):
     reservations = Reservation.objects.all()
@@ -36,3 +37,17 @@ def return_velo(request):
     else: 
         form = ReturnVeloForm()
     return render(request, 'reservations/return_velo.html', {'form' : form}) 
+
+def login_page(request):
+    form = LoginForm()
+    message = ''
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            if user is not None:
+                login(request, user)
+                message = f'Bonjour {user.username} ! Vous êtes connecté. '
+            else:
+                message = 'Identifiants incorrects'
+    return render(request, 'reservations/login.html', {'form' : form, 'message' : message})

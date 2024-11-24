@@ -6,6 +6,12 @@ td, th {
 table {
     border-collapse: collapse;
     margin: auto;
+    background-color: #D0D0D0;
+}
+
+thead tr {
+    background-color: 3D4435;
+    color: tan;
 }
 
 body {
@@ -26,4 +32,16 @@ header {
 
 nav a:visited {
     color: tan;
+}
+
+main {
+    margin-top: 100px;
+}
+
+caption {
+    font-size: 2em;
+}
+
+body {
+    background-color: #C2C8CC;
 }

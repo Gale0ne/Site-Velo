@@ -1,5 +1,5 @@
 from django import forms
-from reservations.models import Reservation, Velo
+from reservations.models import Reservation, Velo, User
 
 class ReservationForm(forms.ModelForm):
     class Meta:
@@ -17,3 +17,7 @@ class ReturnVeloForm(forms.Form):
         queryset=Velo.objects.filter(est_disponible=False),  
         label="Sélectionnez un vélo à retourner"
     )
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=30, label="Nom d'utilisateur")
+    password = forms.CharField(max_length=30, widget=forms.PasswordInput, label="Mot de passe")

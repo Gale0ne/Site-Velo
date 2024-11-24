@@ -10,20 +10,26 @@
 <main>
  <table>
    <caption>Voici la liste des réservations</caption>
-   <tr>
-      <th>Élève</th>
-      <th>Vélo Choisi</th>
-      <th>Début Réservation</th>
-      <th>Fin Réservation</th>
-   </tr>
-   {% for reservation in reservations%}
-   <tr>
-      <td>{{reservation.eleve}}</td>
-      <td>{{reservation.velo}}</td>
-      <td>{{reservation.start_time}}</td>
-      <td>{{reservation.end_time}}</td>
-   </tr>
-   {% endfor %}
+   <thead>
+      <tr>
+         <th>Élève</th>
+         <th>Vélo Choisi</th>
+         <th>Début Réservation</th>
+         <th>Fin Réservation</th>
+         <th>Code</th>
+      </tr>
+   </thead>
+   <tbody>
+      {% for reservation in reservations%}
+      <tr>
+         <td>{{reservation.eleve}}</td>
+         <td>{{reservation.velo}}</td>
+         <td>{{reservation.start_time}}</td>
+         <td>{{reservation.end_time}}</td>
+         <td>{{reservation.velo.code}}</td>
+      </tr>
+      {% endfor %}
+   </tbody>
  </table>
 </main>
  {% endblock %}
