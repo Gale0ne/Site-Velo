@@ -2,12 +2,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from reservations.models import Reservation, Velo
 from reservations.forms import ReservationForm, ReturnVeloForm, LoginForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def page_reservations(request):
     reservations = Reservation.objects.all()
     return render(request, 'reservations/reservations.html', {'reservations' : reservations})
 
+@login_required
 def ajout_velo(request):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
@@ -22,10 +25,12 @@ def ajout_velo(request):
 
     return render(request, 'reservations/ajout_velo.html', {'form' : form})
 
+@login_required
 def page_test(request):
     reservations = Reservation.objects.all()
     return HttpResponse(f'Hello C moi {reservations[0].eleve} ')
 
+@login_required
 def return_velo(request):
     if request.method == 'POST':
         form = ReturnVeloForm(request.POST)
@@ -47,7 +52,12 @@ def login_page(request):
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-                message = f'Bonjour {user.username} ! Vous êtes connecté. '
+                return redirect('page_reservation')
             else:
                 message = 'Identifiants incorrects'
     return render(request, 'reservations/login.html', {'form' : form, 'message' : message})
+
+@login_required
+def logout_page(request):
+    logout(request)
+    return redirect("login")

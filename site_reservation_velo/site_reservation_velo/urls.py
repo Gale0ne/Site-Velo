@@ -24,5 +24,6 @@ urlpatterns = [
     path('ajout_reservation/', views.ajout_velo, name='ajout_reservation'),
     path('page_test/', views.page_test, name='page_test'),
     path('rendre_velo/', views.return_velo, name='return_bike'),
-    path('', views.login_page, name="login")
+    path('', views.login_page, name="login"),
+    path('logout', views.logout_page, name='logout'),
 ]
