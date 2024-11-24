@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from reservations.models import Reservation, Velo
-from reservations.forms import ReservationForm, ReturnVeloForm, LoginForm
+from reservations.forms import ReservationForm, ReturnVeloForm, LoginForm, SignupForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 
@@ -61,3 +61,13 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return redirect("login")
+
+def signup_page(request):
+    form = SignupForm()
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('page_reservation')
+    return render(request, 'reservations/signup.html', {'form' : form})
