@@ -1,9 +1,12 @@
 {% extends 'reservations/base.html' %}
+
 {% block content %}
-<form action="" method='post' nonvalidate>
-    {% csrf_token %}
-    {{ form }}
-    <input type='submit' value='Envoyer'>
-</form>
-<a href="{% url 'page_reservation' %}">Retour à la page d'accueil</a>
+<div class="add-reservation-form">
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Envoyer">
+    </form>
+    <a href="{% url 'page_reservation' %}">Retour à la page d'accueil</a>
+</div>
 {% endblock %}

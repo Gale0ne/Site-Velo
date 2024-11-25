@@ -1,35 +1,56 @@
 {% extends 'reservations/base.html' %}
+
 {% block content %}
-<header>
-   <h1>Site de Réservations Vélyce</h1>
-   <nav>
-      <a href="{% url 'return_bike' %}">Retourner un vélo</a>
-      <a href="{% url 'ajout_reservation'%}">Ajouter une réservation</a>
-   </nav>
+<header class="header">
+    <h1 class="header-title">🌿 Site de Réservations Vélyce 🚴‍♂️</h1>
+    <a class="logout-button" href="{% url 'logout' %}">Se déconnecter</a>
+    <nav class="nav-bar">
+       
+    </nav>
 </header>
-<main>
- <table>
-   <caption>Voici la liste des réservations</caption>
-   <thead>
-      <tr>
-         <th>Élève</th>
-         <th>Vélo Choisi</th>
-         <th>Début Réservation</th>
-         <th>Fin Réservation</th>
-         <th>Code</th>
-      </tr>
-   </thead>
-   <tbody>
-      {% for reservation in reservations%}
-      <tr>
-         <td>{{reservation.eleve}}</td>
-         <td>{{reservation.velo}}</td>
-         <td>{{reservation.start_time}}</td>
-         <td>{{reservation.end_time}}</td>
-         <td>{{reservation.code}}</td>
-      </tr>
-      {% endfor %}
-   </tbody>
- </table>
+
+<main class="main-content">
+    <section class="intro-section">
+        <h2> Bonjour {{ request.user }}, bienvenue sur Vélyce</h2>
+        <p> Tu es bien connecté en tant que <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong>. </p>
+        <p>Gère facilement tes réservations de vélos au lycée. 🚲</p>
+        <div class="button_reservation">
+         <a href="{% url 'ajout_reservation' %}" class="nav-link submit-button">Tu souhaites réserver un vélo ? </a>
+         <a href="{% url 'return_bike' %}" class="nav-link submit-button">Tu souhaites rendre ton vélo ? </a>
+        </div>
+      
+    </section>
+    <table class="reservations-table">
+        <caption>Liste des réservations actuelles</caption>
+        <thead>
+            <tr>
+                <th>Élève</th>
+                <th>Vélo choisi</th>
+                <th>Début de la réservation</th>
+                <th>Fin de la réservation</th>
+                <th>Code de l'antivol</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.eleve }}</td>
+                <td>{{ reservation.velo }}</td>
+                <td>{{ reservation.start_time }}</td>
+                <td>{{ reservation.end_time }}</td>
+                <td>{{ reservation.code }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </main>
- {% endblock %}
+
+<div class="cyclist-container">
+   <img src="/static/images/cyclist.png" alt="Cycliste" class="cyclist">
+</div>
+
+<footer class="footer">
+    <p>© 2024 Vélyce - Respectons l’environnement, un vélo à la fois 🌍</p>
+</footer>
+
+{% endblock %}

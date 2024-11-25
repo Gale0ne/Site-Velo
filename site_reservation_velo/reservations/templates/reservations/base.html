@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="{% static 'reservations/style.css' %}">
 </head>
 <body>
-    {% if user.is_authenticated %}
-        <p> Vous êtes connectés en tant que <strong>{{ request.user }}</strong>. <a href="{% url 'logout' %}">Se déconnecter</a></p>
-    {% endif %}
     {% block content %}{% endblock %}
 </body>
 </html>

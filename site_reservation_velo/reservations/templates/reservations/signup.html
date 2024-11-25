@@ -1,12 +1,17 @@
 {% extends 'reservations/base.html' %}
+
 {% block content %}
+<div class="signup-container">
     <h2>Inscription</h2>
     {% if form.errors %}
-        {{ form.errors }}
+        <div class="form-errors">
+            {{ form.errors }}
+        </div>
     {% endif %}
-    <form method="post">
+    <form method="post" class="signup-form">
         {{ form.as_p }}
         {% csrf_token %}
-        <button type="submit" >S’inscrire</button>
+        <button type="submit" class="submit-button">S’inscrire</button>
     </form>
+</div>
 {% endblock content %}

@@ -1,47 +1,511 @@
-td, th {
-    border: 1px solid black;
-    padding: 1em;
-}
-
-table {
-    border-collapse: collapse;
-    margin: auto;
-    background-color: #D0D0D0;
-}
-
-thead tr {
-    background-color: 3D4435;
-    color: tan;
-}
-
+/* Style général applicable à toutes les pages */
 body {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #ECECEC; /* Gris Clair */
+    margin: 0;
+    padding: 0;
+    color: #2C3E50; /* Bleu Nuit */
+    line-height: 1.6;
 }
 
-nav {
+/* ----- Header commun à toutes les pages ----- */
+.header {
+    background-color: #2C3E50; /* Bleu Nuit */
+    color: #F5F5DC; /* Beige Clair */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid #4CAF50; /* Vert Forêt */
+}
+
+.header-title {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 20px;
+}
+
+.nav-link {
+    color: black; /* Beige Clair */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #FFC107; /* Jaune Soleil */
+    text-shadow: 0px 0px 5px #FFC107;
+}
+
+/* ----- Section introductive pour la page d'accueil ----- */
+.intro-section {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #FFFFFF; /* Blanc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 80%;
+}
+
+.intro-section h2 {
+    color: #4CAF50; /* Vert Forêt */
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.intro-section p {
+    color: #2C3E50; /* Bleu Nuit */
+    font-size: 1.2em;
+}
+
+.button_reservation {
     display: flex;
     justify-content: space-around;
-    color: tan;
 }
 
-header {
-    background-color: #3D4435;
+/* Conteneur du cycliste */
+.cyclist-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #f0f8ff, #c2e9fb); /* Ciel dégradé */
+    margin-bottom: 20px;
+}
+
+/* Conteneur du cycliste */
+.cyclist-container {
+    position: relative;
+    width: 100%; /* Largeur du conteneur */
+    height: 200px; /* Hauteur de la section où se déplace le cycliste */
+    overflow: hidden; /* Empêche le contenu de dépasser */
+    background: linear-gradient(to bottom, #f0f8ff, #c2e9fb); /* Ciel dégradé */
+    margin-bottom: 20px;
+}
+
+/* Cycliste */
+.cyclist {
+    position: absolute;
+    bottom: 20px; /* Positionne le cycliste vers le bas du conteneur */
+    left: -100px; /* Place le cycliste en dehors de la page */
+    width: 100px; /* Ajuste la taille de l'image */
+    animation: ride 5s linear infinite; /* Animation continue */
+    z-index: 10;
+}
+
+.cyclist-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: #808080; /* Route grise */
+    border-top: 3px solid #000; /* Bordure noire pour simuler une ligne de route */
+}
+
+
+/* Animation de déplacement */
+@keyframes ride {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(1350%);
+    }
+}
+
+
+
+/* ----- Table principale pour la page des réservations ----- */
+.reservations-table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #FFFFFF; /* Blanc */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.reservations-table caption {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #4CAF50; /* Vert Forêt */
+    padding: 10px;
+}
+
+.reservations-table th,
+.reservations-table td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    font-size: 1em;
+}
+
+.reservations-table thead {
+    background-color: #4CAF50; /* Vert Forêt */
+    color: #F5F5DC; /* Beige Clair */
+    font-weight: bold;
+}
+
+.reservations-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Ton clair */
+}
+
+.reservations-table tbody tr:hover {
+    background-color: #FFC107; /* Jaune Soleil */
+    color: #2C3E50; /* Bleu Nuit */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Bouton de déconnexion */
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF; /* Blanc */
+    background-color: #720004; /* Rouge Tomate */
+    border: none;
     border-radius: 5px;
-    color: tan;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-nav a:visited {
-    color: tan;
+.logout-button:hover {
+    background-color: #C0392B; /* Rouge légèrement plus sombre */
+    transform: scale(1.05); /* Légère mise en relief */
 }
 
-main {
-    margin-top: 100px;
+.logout-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.5); /* Ombre rouge */
 }
 
-caption {
+/* ----- Footer commun à toutes les pages ----- */
+.footer {
+    text-align: center;
+    background-color: #2C3E50; /* Bleu Nuit */
+    color: #F5F5DC; /* Beige Clair */
+    padding: 10px;
+    margin-top: 30px;
+    border-top: 3px solid #4CAF50; /* Vert Forêt */
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1em;
+}
+
+/* ----- Animations globales ----- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header,
+.nav-bar,
+.intro-section,
+.reservations-table,
+.footer {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ----- Conteneur principal pour la page d'inscription ----- */
+.signup-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Blanc */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.signup-container h2 {
+    text-align: center;
+    color: #2C3E50; /* Bleu Nuit */
+    margin-bottom: 20px;
+}
+
+/* ----- Styles pour les erreurs de formulaire ----- */
+.form-errors {
+    background-color: #FFE6E6; /* Ton clair pour erreurs */
+    color: #E74C3C; /* Rouge Tomate */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #E74C3C; /* Rouge Tomate */
+    border-radius: 5px;
+}
+
+/* ----- Formulaire de la page d'inscription ----- */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.signup-form input,
+.signup-form select,
+.signup-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* Bouton de soumission pour les formulaires */
+.submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #F5F5DC; /* Beige Clair */
+    background-color: #4CAF50; /* Vert Forêt */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+    background-color: #388E3C; /* Vert légèrement plus sombre */
+    transform: scale(1.05);
+}
+
+/* Focus pour les champs de formulaire */
+.signup-form input:focus,
+.signup-form select:focus,
+.signup-form textarea:focus {
+    outline: none;
+    border-color: #FFC107; /* Jaune Soleil */
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); /* Légère ombre jaune */
+}
+
+/* ----- Conteneur principal pour la page de connexion ----- */
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #FFFFFF; /* Blanc */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', Arial, sans-serif;
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.form-container h2 {
+    color: #4CAF50; /* Vert Forêt */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+/* ----- Formulaire de la page de connexion ----- */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form select,
+.login-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus sur les champs */
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus,
+.login-form select:focus,
+.login-form textarea:focus {
+    outline: none;
+    border-color: #FFC107; /* Jaune Soleil */
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}
+
+/* ----- Styles pour la page d'ajout de réservation ----- */
+
+/* Conteneur du formulaire */
+.add-reservation-form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #FFFFFF; /* Blanc */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Champs du formulaire */
+.add-reservation-form input[type="text"],
+.add-reservation-form input[type="password"],
+.add-reservation-form input[type="email"],
+.add-reservation-form select,
+.add-reservation-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus sur les champs */
+.add-reservation-form input:focus,
+.add-reservation-form select:focus,
+.add-reservation-form textarea:focus {
+    outline: none;
+    border-color: #FFC107; /* Jaune Soleil */
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}
+
+/* Bouton d'envoi */
+.add-reservation-form input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #F5F5DC; /* Beige Clair */
+    background-color: #4CAF50; /* Vert Forêt */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-reservation-form input[type="submit"]:hover {
+    background-color: #388E3C; /* Vert légèrement plus sombre */
+    transform: scale(1.05);
+}
+
+/* Lien retour */
+.add-reservation-form a {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #4CAF50; /* Vert Forêt */
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.add-reservation-form a:hover {
+    color: #388E3C; /* Vert légèrement plus sombre */
+}
+
+
+/* ----- Styles pour la page de retour de vélo ----- */
+
+/* Conteneur principal */
+.return-bike-form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #FFFFFF; /* Blanc */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.6s ease-in-out;
+    text-align: center;
+}
+
+/* Titre */
+.return-bike-form h1 {
+    color: #4CAF50; /* Vert Forêt */
     font-size: 2em;
+    margin-bottom: 20px;
 }
 
-body {
-    background-color: #C2C8CC;
+/* Champs du formulaire */
+.return-bike-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.return-bike-form form input[type="text"],
+.return-bike-form form select,
+.return-bike-form form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus sur les champs */
+.return-bike-form form input:focus,
+.return-bike-form form select:focus,
+.return-bike-form form textarea:focus {
+    outline: none;
+    border-color: #FFC107; /* Jaune Soleil */
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}
+
+/* Bouton de soumission */
+.return-bike-form button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #F5F5DC; /* Beige Clair */
+    background-color: #4CAF50; /* Vert Forêt */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.return-bike-form button[type="submit"]:hover {
+    background-color: #388E3C; /* Vert légèrement plus sombre */
+    transform: scale(1.05);
+}
+
+/* Lien retour */
+.return-bike-form a {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #4CAF50; /* Vert Forêt */
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.return-bike-form a:hover {
+    color: #388E3C; /* Vert légèrement plus sombre */
 }

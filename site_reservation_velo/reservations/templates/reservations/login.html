@@ -1,11 +1,17 @@
 {% extends 'reservations/base.html' %}
+
 {% block content %}
-<p>{{ message }}</p>
-<form action="" method='post' nonvalidate>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type='submit' value='Envoyer'>
-</form>
-<p>Pas encore inscrit ? Inscrivez vous en cliquant sur ce <a href="{% url 'page_reservation' %}">formulaire d'inscription</a> ! </p>
-<a href="{% url 'page_reservation' %}">Retour à la page d'accueil</a>
+<div class="form-container">
+    <h2>Connexion à votre espace</h2>
+    <p class="message">{{ message }}</p>
+    <form action="" method="post" class="login-form" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Envoyer</button>
+    </form>
+    <p class="signup-link">
+        Pas encore inscrit ? Inscrivez-vous en cliquant sur ce <a href="{% url 'signup' %}">formulaire d'inscription</a> !
+    </p>
+    <a href="{% url 'page_reservation' %}" class="back-link">Retour à la page d'accueil</a>
+</div>
 {% endblock %}
