@@ -6,7 +6,14 @@ from django.contrib.auth import get_user_model
 class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['velo', 'eleve']
+        fields = ['eleve', 'velo']
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        
+        self.fields['eleve'].initial = f"{self.user.first_name} {self.user.last_name}"
+        # self.fields['eleve'].widget.attrs['disabled'] = True
         
     def clean_velo(self):
         velo = self.cleaned_data.get('velo')

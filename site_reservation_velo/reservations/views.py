@@ -13,7 +13,7 @@ def page_reservations(request):
 @login_required
 def ajout_velo(request):
     if request.method == 'POST':
-        form = ReservationForm(request.POST)
+        form = ReservationForm(request.POST, user=request.user)
         if form.is_valid():
             reservation = form.save(commit=False)
             reservation.velo.est_disponible = False
@@ -21,7 +21,7 @@ def ajout_velo(request):
             reservation.save()
             return redirect("page_reservation")
     else:
-        form = ReservationForm()
+        form = ReservationForm(user=request.user)
 
     return render(request, 'reservations/ajout_velo.html', {'form' : form})
 
