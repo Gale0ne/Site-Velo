@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
@@ -17,7 +18,7 @@ class Velo(models.Model):
 class Reservation(models.Model):
     velo = models.ForeignKey(Velo, on_delete=models.CASCADE)
     eleve = models.fields.CharField(max_length=100)
-    start_time = models.DateTimeField(auto_now_add=True)
+    start_time = models.DateTimeField()
     end_time = models.DateTimeField(null=True, blank=True)
     code = models.IntegerField(null=True, blank=True)
 

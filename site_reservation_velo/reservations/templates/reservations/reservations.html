@@ -28,17 +28,15 @@
                 <th>Vélo choisi</th>
                 <th>Début de la réservation</th>
                 <th>Fin de la réservation</th>
-                <th>Code de l'antivol</th>
             </tr>
         </thead>
         <tbody>
-            {% for reservation in reservations %}
+            {% for reservation in reservations reversed %}
             <tr>
                 <td>{{ reservation.eleve }}</td>
                 <td>{{ reservation.velo }}</td>
                 <td>{{ reservation.start_time }}</td>
                 <td>{{ reservation.end_time }}</td>
-                <td>{{ reservation.code }}</td>
             </tr>
             {% endfor %}
         </tbody>
