@@ -1,5 +1,5 @@
 from django import forms
-from reservations.models import Reservation, Velo
+from reservations.models import Reservation, Velo, User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.utils.timezone import now
@@ -17,8 +17,16 @@ class ReservationForm(forms.ModelForm):
             'end_time' : 'Heure de fin de la réservation'
         }
         widgets = {
-            'start_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'end_time' : forms.DateTimeInput(attrs={'type' : 'datetime-local'})
+            'start_time': forms.DateTimeInput(attrs={
+                'class': 'form-control datetime-field', 
+                'placeholder': 'Début de la réservation',
+                'type': 'datetime-local'
+            }),
+            'end_time': forms.DateTimeInput(attrs={
+                'class': 'form-control datetime-field',         
+                'placeholder': 'Fin de la réservation',
+                'type': 'datetime-local'
+            }),
         }
         
 
@@ -32,7 +40,7 @@ class ReservationForm(forms.ModelForm):
         
         
     def clean(self):
-        cleaned_data = super().clean()  # Appelle la méthode clean de ModelForm
+        cleaned_data = super().clean()  
         start_time = cleaned_data.get('start_time')
         end_time = cleaned_data.get('end_time')
         velo = cleaned_data.get('velo')
@@ -77,3 +85,9 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = ['username', 'email', 'first_name', 'last_name', 'classe']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Cette adresse e-mail est déjà associée à un compte.")
+        return email

@@ -1,0 +1,20 @@
+{% extends 'reservations/base.html' %}
+
+{% block content %}
+<div class="reservation-success-container">
+    <h1>🎉 Réservation confirmée !</h1>
+    <p>
+        Votre réservation de vélo a été enregistrée avec succès. Un e-mail contenant les détails de votre réservation a été envoyé à 
+        <strong>{{ user.email }}</strong>.
+    </p>
+    <div class="reservation-details">
+        <h2>Détails de votre réservation :</h2>
+        <ul>
+            <li><strong>Début de la réservation :</strong> {{ reservation.start_time }}</li>
+            <li><strong>Fin de la réservation :</strong> {{ reservation.end_time }}</li>
+            <li><strong>Code de réservation :</strong> {{ reservation.code }}</li>
+        </ul>
+    </div>
+    <a href="{% url 'page_reservation' %}" class="button">Retour à la page d'accueil</a>
+</div>
+{% endblock %}

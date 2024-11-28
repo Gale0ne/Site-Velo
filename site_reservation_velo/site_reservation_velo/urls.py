@@ -26,5 +26,7 @@ urlpatterns = [
     path('rendre_velo/', views.return_velo, name='return_bike'),
     path('', views.login_page, name="login"),
     path('logout', views.logout_page, name='logout'),
-    path('signup/', views.signup_page, name='signup'), 
+    path('signup/', views.signup_page, name='signup'),
+    path('redirection_creation_compte/', views.redirect_signup, name='redirect_signup'),
+    path('redirection_ajout_reservation/<int:reservation_id>/', views.redirect_ajout_reservation, name='redirect_ajout_reservation'),
 ]

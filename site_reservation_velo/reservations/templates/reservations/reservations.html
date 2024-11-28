@@ -15,6 +15,9 @@
         <p> Tu es bien connecté en tant que <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong>. </p>
         <p>Gère facilement tes réservations de vélos au lycée. 🚲</p>
         <div class="button_reservation">
+        {% if request.user.role == 'moderateur' %}
+        <a href="{% url 'signup' %}" class="nav-link submit-button">Tu souhaite inscrire quelqu'un</a>
+        {% endif %}
          <a href="{% url 'ajout_reservation' %}" class="nav-link submit-button">Tu souhaites réserver un vélo ? </a>
          <a href="{% url 'return_bike' %}" class="nav-link submit-button">Tu souhaites rendre ton vélo ? </a>
         </div>
@@ -32,7 +35,7 @@
         </thead>
         <tbody>
             {% for reservation in reservations reversed %}
-            <tr>
+            <tr class="{% if not reservation.complete and reservation.end_time < now %}avertissement_velo_non_rendu{% endif %}">
                 <td>{{ reservation.eleve }}</td>
                 <td>{{ reservation.velo }}</td>
                 <td>{{ reservation.start_time }}</td>

@@ -21,16 +21,20 @@ class Reservation(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(null=True, blank=True)
     code = models.IntegerField(null=True, blank=True)
+    complete = models.BooleanField(default=False)
 
     def return_velo(self):
         self.end_time = timezone.now()
         self.velo.est_disponible = True
-        self.code = self.changer_code()
+        self.complete = True
         self.save()
         self.velo.save()
 
     def changer_code(self):
         return randint(1000, 9999)
+    
+    def __str__(self):
+        return f'{self.complete} {self.eleve} de {self.start_time} à {self.end_time}'
 
 class User(AbstractUser):
     CLASSE_CHOICES = [
@@ -39,4 +43,10 @@ class User(AbstractUser):
         ("TG3", "TG3"), 
         ("TG4", "TG4"), 
     ]
+
+    ROLE_CHOICES = [
+        ("eleve", "Élève"), 
+        ("moderateur", "Modérateur"), 
+    ]
     classe = models.CharField(max_length=5, choices=CLASSE_CHOICES, default="TG1")
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='eleve')

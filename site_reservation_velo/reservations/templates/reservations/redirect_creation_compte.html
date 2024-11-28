@@ -1,0 +1,23 @@
+{% extends 'reservations/base.html' %}
+
+{% block content %}
+<div class="account-info-container">
+    <h1>Création de compte</h1>
+    <div class="info-section">
+        <p class="intro">
+            Bonjour ! 😊 Pour accéder au service de réservation de vélos, vous devez d'abord créer un compte auprès de la vie scolaire. 
+        </p>
+        <p class="details">
+            <strong>Pourquoi cette méthode ?</strong>
+            <br> Cette approche garantit que chaque compte est correctement vérifié et sécurisé. Cela permet d'assurer une utilisation responsable et adaptée du service. 🚴‍♂️
+        </p>
+        <p class="steps">
+            <strong>Comment procéder ?</strong>
+            <br> Rendez-vous à la vie scolaire pendant les horaires d'ouverture, et un membre de l'équipe se chargera de vous enregistrer.
+        </p>
+    </div>
+    <div class="info-actions">
+        <a href="{% url 'page_reservation' %}" class="button">Retour à l'accueil</a>
+    </div>
+</div>
+{% endblock %}

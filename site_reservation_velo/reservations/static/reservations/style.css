@@ -39,8 +39,7 @@ body {
 }
 
 .nav-link:hover {
-    color: #FFC107; /* Jaune Soleil */
-    text-shadow: 0px 0px 5px #FFC107;
+    color: #FFFFFF; /* Couleur du texte lors du survolage */
 }
 
 /* ----- Section introductive pour la page d'accueil ----- */
@@ -168,6 +167,9 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.avertissement_velo_non_rendu {
+    background-color: #fabcaf;
+}
 /* Bouton de déconnexion */
 .logout-button {
     position: absolute;
@@ -354,6 +356,35 @@ body {
 
 /* ----- Styles pour la page d'ajout de réservation ----- */
 
+/* Styles pour les champs datetime */
+.datetime-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #2C3E50; /* Bleu Nuit */
+    background-color: #f9f9f9; /* Gris clair */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.datetime-field:focus {
+    outline: none;
+    border-color: #FFC107; /* Jaune Soleil */
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); /* Ombre jaune douce */
+}
+
+/* Placeholder stylisé */
+.datetime-field::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Conteneur des champs pour espacement */
+.form-group {
+    margin-bottom: 20px;
+}
+
 /* Conteneur du formulaire */
 .add-reservation-form {
     max-width: 600px;
@@ -423,6 +454,83 @@ body {
 
 .add-reservation-form a:hover {
     color: #388E3C; /* Vert légèrement plus sombre */
+}
+
+/* ----- Page de confirmation de réservation ----- */
+
+.reservation-success-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #FFFFFF; /* Blanc */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Titre principal */
+.reservation-success-container h1 {
+    font-size: 2em;
+    color: #4CAF50; /* Vert Forêt */
+    margin-bottom: 20px;
+}
+
+/* Texte explicatif */
+.reservation-success-container p {
+    font-size: 1.1em;
+    color: #2C3E50; /* Bleu Nuit */
+    margin-bottom: 30px;
+}
+
+/* Détails de réservation */
+.reservation-details {
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #F5F5F5; /* Gris Clair */
+    border-radius: 5px;
+    border-left: 5px solid #FFC107; /* Ligne jaune pour accent */
+}
+
+.reservation-details h2 {
+    font-size: 1.5em;
+    color: #2C3E50; /* Bleu Nuit */
+    margin-bottom: 10px;
+}
+
+.reservation-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reservation-details li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #2C3E50; /* Bleu Nuit */
+}
+
+/* Bouton retour */
+.reservation-success-container .button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF; /* Blanc */
+    background-color: #4CAF50; /* Vert Forêt */
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.reservation-success-container .button:hover {
+    background-color: #388E3C; /* Vert légèrement plus sombre */
+    transform: scale(1.05);
 }
 
 
@@ -509,3 +617,54 @@ body {
 .return-bike-form a:hover {
     color: #388E3C; /* Vert légèrement plus sombre */
 }
+
+/* ----- Page redirection création de compte ----- */
+
+/* Conteneur principal */
+.account-info-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #FFFFFF; /* Blanc */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Titre principal */
+.account-info-container h1 {
+    font-size: 2em;
+    color: #4CAF50; /* Vert Forêt */
+    margin-bottom: 20px;
+}
+
+/* Texte explicatif */
+.account-info-container p {
+    font-size: 1.1em;
+    color: #2C3E50; /* Bleu Nuit */
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Bouton d'action */
+.info-actions .button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #FFFFFF; /* Blanc */
+    background-color: #4CAF50; /* Vert Forêt */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.info-actions .button:hover {
+    background-color: #388E3C; /* Vert légèrement plus sombre */
+    transform: scale(1.05);
+}
+
+
+
