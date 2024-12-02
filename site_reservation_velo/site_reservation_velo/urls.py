@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from reservations import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +31,9 @@ urlpatterns = [
     path('signup/', views.signup_page, name='signup'),
     path('redirection_creation_compte/', views.redirect_signup, name='redirect_signup'),
     path('redirection_ajout_reservation/<int:reservation_id>/', views.redirect_ajout_reservation, name='redirect_ajout_reservation'),
+    path('signaler_incident/', views.signaler_incident, name='signaler_incident'),
 ]
+
+
+if settings.DEBUG: # Servir les fichiers média uniquement en mode développement
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

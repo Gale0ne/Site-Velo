@@ -6,12 +6,12 @@ from django.utils.timezone import now
 from django.core.mail import send_mail
 
 from reservations.models import Reservation, User
-from reservations.forms import ReservationForm, ReturnVeloForm, LoginForm, SignupForm
+from reservations.forms import ReservationForm, ReturnVeloForm, LoginForm, SignupForm, IncidentForm
 
 @login_required
 def page_reservations(request):
     maintenant = now()
-    reservations = Reservation.objects.all()
+    reservations = Reservation.objects.filter(complete=False).order_by('end_time')
     return render(request, 'reservations/reservations.html', {'reservations' : reservations, 'now' : maintenant})
 
 @login_required
@@ -132,3 +132,16 @@ def redirect_ajout_reservation(request, reservation_id):
         'user': request.user,
         'reservation': reservation
     })
+
+@login_required
+def signaler_incident(request):
+    if request.method == 'POST':
+        form = IncidentForm(request.POST, request.FILES)
+        if form.is_valid():
+            incident = form.save(commit=False)
+            incident.user = request.user
+            incident.save()
+            return redirect('page_reservation') 
+    else:
+        form = IncidentForm()
+    return render(request, 'reservations/signal_incident.html', {'form': form})

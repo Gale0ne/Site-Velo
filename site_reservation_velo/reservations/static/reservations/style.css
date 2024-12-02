@@ -167,9 +167,12 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.avertissement_velo_non_rendu {
-    background-color: #fabcaf;
+table tr.avertissement_velo_non_rendu {
+    background-color: #ffcccc !important; /* Rouge clair */
+    color: #b30000 !important; /* Rouge foncé */
+    font-weight: bold;
 }
+
 /* Bouton de déconnexion */
 .logout-button {
     position: absolute;
@@ -666,5 +669,85 @@ body {
     transform: scale(1.05);
 }
 
+/* ----- Conteneur du formulaire d'incident ----- */
+.incident-form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #FFFFFF; /* Blanc */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Roboto', Arial, sans-serif;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Titre de la page */
+.incident-form-container h1 {
+    font-size: 2em;
+    color: #4CAF50; /* Vert Forêt */
+    margin-bottom: 20px;
+}
+
+/* Texte explicatif */
+.incident-form-container p {
+    font-size: 1.1em;
+    color: #2C3E50; /* Bleu Nuit */
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Formulaire */
+.incident-form-container form .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #2C3E50; /* Bleu Nuit */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Gris clair */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.incident-form-container form .form-control:focus {
+    outline: none;
+    border-color: #FFC107; /* Jaune Soleil */
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); /* Légère ombre jaune */
+}
+
+/* Bouton d'envoi */
+.incident-form-container form .submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF; /* Blanc */
+    background-color: #4CAF50; /* Vert Forêt */
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.incident-form-container form .submit-button:hover {
+    background-color: #388E3C; /* Vert légèrement plus sombre */
+    transform: scale(1.05);
+}
+
+/* Lien de retour */
+.incident-form-container .back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #4CAF50; /* Vert Forêt */
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.incident-form-container .back-link:hover {
+    color: #388E3C; /* Vert légèrement plus sombre */
+}
 
 

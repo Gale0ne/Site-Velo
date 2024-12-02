@@ -1,5 +1,5 @@
 from django import forms
-from reservations.models import Reservation, Velo, User
+from reservations.models import Reservation, Velo, User, Incident
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.utils.timezone import now
@@ -91,3 +91,17 @@ class SignupForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Cette adresse e-mail est déjà associée à un compte.")
         return email
+
+class IncidentForm(forms.ModelForm):
+    class Meta:
+        model = Incident
+        fields = ['velo', 'description', 'photo']
+        widgets = {
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Décrivez le problème rencontré avec le vélo',
+                'rows': 5
+            }),
+            'velo': forms.Select(attrs={'class': 'form-control'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control'}),
+        }

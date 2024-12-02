@@ -16,10 +16,11 @@
         <p>Gère facilement tes réservations de vélos au lycée. 🚲</p>
         <div class="button_reservation">
         {% if request.user.role == 'moderateur' %}
-        <a href="{% url 'signup' %}" class="nav-link submit-button">Tu souhaite inscrire quelqu'un</a>
+        <a href="{% url 'signup' %}" class="nav-link submit-button">Tu souhaites inscrire quelqu'un</a>
         {% endif %}
          <a href="{% url 'ajout_reservation' %}" class="nav-link submit-button">Tu souhaites réserver un vélo ? </a>
          <a href="{% url 'return_bike' %}" class="nav-link submit-button">Tu souhaites rendre ton vélo ? </a>
+         <a href="{% url 'signaler_incident' %}" class="link submit-button">Signaler un incident</a>
         </div>
       
     </section>
@@ -35,7 +36,7 @@
         </thead>
         <tbody>
             {% for reservation in reservations reversed %}
-            <tr class="{% if not reservation.complete and reservation.end_time < now %}avertissement_velo_non_rendu{% endif %}">
+            <tr class="{% if reservation.end_time and not reservation.complete and reservation.end_time < now %}avertissement_velo_non_rendu{% endif %}">
                 <td>{{ reservation.eleve }}</td>
                 <td>{{ reservation.velo }}</td>
                 <td>{{ reservation.start_time }}</td>
@@ -44,6 +45,10 @@
             {% endfor %}
         </tbody>
     </table>
+    <div class="legend-container">
+        <p><span class="legend-red"></span> Les réservations avec un fond rouge indiquent que le vélo n'a pas encore été rendu.</p>
+    </div>
+    
 </main>
 
 <div class="cyclist-container">

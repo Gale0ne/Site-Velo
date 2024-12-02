@@ -1,0 +1,16 @@
+{% extends 'reservations/base.html' %}
+
+{% block content %}
+<div class="incident-form-container">
+    <h1>🚲 Signaler un incident sur un vélo</h1>
+    <p>
+        Si vous avez remarqué un problème avec un vélo, veuillez remplir ce formulaire. Cela nous aide à résoudre rapidement les problèmes et à garantir un service de qualité. Merci pour votre collaboration !
+    </p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Envoyer le signalement</button>
+    </form>
+    <a href="{% url 'page_reservation' %}" class="back-link">Retour aux réservations</a>
+</div>
+{% endblock %}
