@@ -11,16 +11,16 @@ class ReservationForm(forms.ModelForm):
         model = Reservation
         fields = ['eleve', 'velo', 'start_time', 'end_time']
         labels = {
-            'eleve' : "Élève",
-            'velo' : 'Vélo',
-            'start_time' : 'Heure de départ de la réservation',
-            'end_time' : 'Heure de fin de la réservation'
+            'eleve': "Élève",
+            'velo': 'Vélo',
+            'start_time': 'Heure de départ de la réservation',
+            'end_time': 'Heure de fin de la réservation'
         }
         widgets = {
             'start_time': forms.DateTimeInput(attrs={
                 'class': 'form-control datetime-field', 
                 'placeholder': 'Début de la réservation',
-                'type': 'datetime-local'
+                'type': 'datetime-local',
             }),
             'end_time': forms.DateTimeInput(attrs={
                 'class': 'form-control datetime-field',         
@@ -28,19 +28,26 @@ class ReservationForm(forms.ModelForm):
                 'type': 'datetime-local'
             }),
         }
-        
-
+    
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
-        
-        self.fields['eleve'].initial = f"{self.user.first_name} {self.user.last_name}"
-        # self.fields['eleve'].widget.attrs['disabled'] = True
+
+        # Limiter les choix d'élèves pour les modérateurs
+        if self.user and self.user.is_staff:
+            self.fields['eleve'].queryset = User.objects.all()
+        else:
+            self.fields['eleve'].queryset = User.objects.filter(id=self.user.id)
+
+        # Initialisation automatique pour l'utilisateur connecté
+        if not self.user.is_staff:
+            self.fields['eleve'].initial = self.user
+            self.fields['eleve'].widget.attrs['disabled'] = False  # Désactiver le champ pour un utilisateur non modérateur
+
         self.fields['start_time'].initial = now()
-        
-        
+
     def clean(self):
-        cleaned_data = super().clean()  
+        cleaned_data = super().clean()
         start_time = cleaned_data.get('start_time')
         end_time = cleaned_data.get('end_time')
         velo = cleaned_data.get('velo')
@@ -54,7 +61,7 @@ class ReservationForm(forms.ModelForm):
             )
             if overlapping_reservations.exists():
                 raise ValidationError("Ce vélo est déjà réservé pour cette plage horaire.")
-        
+
         # Vérifie que start_time est avant end_time
         if start_time and end_time and start_time >= end_time:
             raise ValidationError("L'heure de début doit être avant l'heure de fin.")
@@ -62,12 +69,16 @@ class ReservationForm(forms.ModelForm):
         # Vérifie que la réservation n'est pas dans le passé
         if start_time and start_time < now():
             raise ValidationError("La réservation ne peut pas commencer dans le passé.")
-        
+
         # Vérifie que l'intervalle entre start_time et end_time ne dépasse pas 8 heures
         if start_time and end_time:
             max_duration = timedelta(hours=8)
             if end_time - start_time > max_duration:
                 raise ValidationError("La durée de la réservation ne peut pas dépasser 8 heures.")
+
+        # Désactiver l'utilisateur si le champ est désactivé
+        if not self.user.is_staff:
+            cleaned_data['eleve'] = self.user
 
         return cleaned_data
 

@@ -32,6 +32,8 @@ urlpatterns = [
     path('redirection_creation_compte/', views.redirect_signup, name='redirect_signup'),
     path('redirection_ajout_reservation/<int:reservation_id>/', views.redirect_ajout_reservation, name='redirect_ajout_reservation'),
     path('signaler_incident/', views.signaler_incident, name='signaler_incident'),
+    path('charte/', views.charte, name='charte'),
+    path('annuler_reservation/<int:reservation_id>/', views.annuler_reservation, name='annuler_reservation')
 ]
 
 

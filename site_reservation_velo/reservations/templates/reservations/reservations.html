@@ -3,10 +3,12 @@
 {% block content %}
 <header class="header">
     <h1 class="header-title">🌿 Site de Réservations Vélyce 🚴‍♂️</h1>
-    <a class="logout-button" href="{% url 'logout' %}">Se déconnecter</a>
-    <nav class="nav-bar">
-       
-    </nav>
+    <a href="{% url 'logout' %}" class="logout-button" title="Se déconnecter">
+        <span class="desktop-text">Se déconnecter <i class="fa-solid fa-right-from-bracket"></i></span>
+    </a>
+    <a href="{% url 'charte' %}" class="charte-button" title="Voir la charte">
+        <span class="desktop-text">Charte</span>📜
+    </a>
 </header>
 
 <main class="main-content">
@@ -32,21 +34,29 @@
                 <th>Vélo choisi</th>
                 <th>Début de la réservation</th>
                 <th>Fin de la réservation</th>
+                <th>Annuler ses reservations</th>
             </tr>
         </thead>
         <tbody>
             {% for reservation in reservations reversed %}
             <tr class="{% if reservation.end_time and not reservation.complete and reservation.end_time < now %}avertissement_velo_non_rendu{% endif %}">
-                <td>{{ reservation.eleve }}</td>
+                <td>{{ reservation.eleve.first_name }} {{ reservation.eleve.last_name }}</td>
                 <td>{{ reservation.velo }}</td>
                 <td>{{ reservation.start_time }}</td>
                 <td>{{ reservation.end_time }}</td>
+                <td>
+                {% if reservation.eleve == request.user or request.user.is_staff %}
+                    <a href="{% url 'annuler_reservation' reservation.id %}" class="cancel-button" onclick="return confirm('Êtes-vous sûr de vouloir annuler cette réservation ?');">
+                        Annuler
+                    </a>
+                {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <div class="legend-container">
-        <p><span class="legend-red"></span> Les réservations avec un fond rouge indiquent que le vélo n'a pas encore été rendu.</p>
+    <div class="legend-container intro-section">
+        <p><span class="legend-red"></span> ❗Les réservations avec un fond rouge indiquent que le vélo n'a pas encore été rendu.</p>
     </div>
     
 </main>

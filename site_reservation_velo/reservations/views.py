@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import now
@@ -117,7 +118,7 @@ def signup_page(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('page_reservation')
+            return redirect('charte')
     return render(request, 'reservations/signup.html', {'form' : form})
 
 def redirect_signup(request):
@@ -145,3 +146,23 @@ def signaler_incident(request):
     else:
         form = IncidentForm()
     return render(request, 'reservations/signal_incident.html', {'form': form})
+
+@login_required
+def charte(request):
+    return render(request, 'reservations/charte.html')
+
+@login_required
+def annuler_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+
+    # Vérifier que l'utilisateur est le propriétaire de la réservation ou un modérateur
+    if reservation.eleve != request.user and not request.user.is_staff:
+        messages.error(request, "Vous n'êtes pas autorisé à annuler cette réservation.")
+        return redirect('page_reservation')
+
+    # Annuler la réservation
+    reservation.delete()
+
+    # Message de confirmation
+    messages.success(request, "Votre réservation a été annulée avec succès.")
+    return redirect('page_reservation')

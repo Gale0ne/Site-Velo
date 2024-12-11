@@ -173,20 +173,30 @@ table tr.avertissement_velo_non_rendu {
     font-weight: bold;
 }
 
-/* Bouton de déconnexion */
-.logout-button {
+/* ----- Boutons (déconnexion et charte) ----- */
+
+.logout-button,
+.charte-button {
     position: absolute;
     top: 20px;
-    right: 20px;
-    padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
     color: #FFFFFF; /* Blanc */
-    background-color: #720004; /* Rouge Tomate */
     border: none;
-    border-radius: 5px;
+    border-radius: 5px; /* Coins arrondis sur desktop */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+/* Bouton Déconnexion */
+.logout-button {
+    right: 20px; /* Positionné à droite */
+    background-color: #720004; /* Rouge Tomate */
 }
 
 .logout-button:hover {
@@ -194,10 +204,67 @@ table tr.avertissement_velo_non_rendu {
     transform: scale(1.05); /* Légère mise en relief */
 }
 
-.logout-button:focus {
+/* Bouton Charte */
+.charte-button {
+    right: 220px; /* Décalage pour éviter le chevauchement */
+    background-color: #4CAF50; /* Vert Forêt */
+}
+
+.charte-button:hover {
+    background-color: #388E3C; /* Vert légèrement plus sombre */
+    transform: scale(1.05); /* Légère mise en relief */
+}
+
+/* ----- Responsive : Boutons circulaires sur mobile ----- */
+@media (max-width: 768px) {
+    .logout-button,
+    .charte-button {
+        width: 50px; /* Cercle */
+        height: 50px; /* Cercle */
+        font-size: 24px; /* Taille des icônes */
+        padding: 0; /* Pas de padding interne */
+        border-radius: 50%; /* Cercle parfait */
+    }
+
+    .logout-button {
+        right: 20px; /* Position ajustée */
+    }
+
+    .charte-button {
+        right: 80px; /* Position ajustée */
+    }
+
+    /* Masquer le texte sur mobile */
+    .logout-button .desktop-text,
+    .charte-button .desktop-text {
+        display: none;
+    }
+}
+
+/* boutton d'annulation de réservation */
+
+.cancel-button {
+    color: #FFFFFF; /* Blanc */
+    background-color: #E74C3C; /* Rouge Tomate */
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cancel-button:hover {
+    background-color: #C0392B; /* Rouge légèrement plus sombre */
+    transform: scale(1.05); /* Effet d'agrandissement */
+}
+
+.cancel-button:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(231, 76, 60, 0.5); /* Ombre rouge */
 }
+
+
 
 /* ----- Footer commun à toutes les pages ----- */
 .footer {
@@ -750,4 +817,184 @@ table tr.avertissement_velo_non_rendu {
     color: #388E3C; /* Vert légèrement plus sombre */
 }
 
+/* ----- Page Charte ----- */
 
+.charte-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #FFFFFF; /* Blanc */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', Arial, sans-serif;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.charte-container h1 {
+    font-size: 2em;
+    color: #4CAF50; /* Vert Forêt */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.charte-container .intro-text {
+    font-size: 1.2em;
+    text-align: center;
+    color: #2C3E50; /* Bleu Nuit */
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.charte-section {
+    margin-bottom: 20px;
+}
+
+.charte-section h2 {
+    font-size: 1.5em;
+    color: #388E3C; /* Vert foncé */
+    margin-bottom: 10px;
+}
+
+.charte-section p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #2C3E50; /* Bleu Nuit */
+}
+
+.charte-section a.charte-link {
+    color: #FFC107; /* Jaune Soleil */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.charte-section a.charte-link:hover {
+    color: #FFB300; /* Jaune légèrement plus foncé */
+    text-shadow: 0px 0px 5px #FFC107;
+}
+
+.charte-footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1em;
+    color: #2C3E50; /* Bleu Nuit */
+}
+
+.charte-footer .back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF; /* Blanc */
+    background-color: #4CAF50; /* Vert Forêt */
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.charte-footer .back-button:hover {
+    background-color: #388E3C; /* Vert légèrement plus sombre */
+    transform: scale(1.05);
+}
+
+/* --- Styles messages---  */
+
+/* Container pour les notifications */
+.messages {
+    position: fixed;
+    top: 3vh; /* 5% de la hauteur de l'écran */
+    right: 160vh;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+}
+
+/* Style général pour chaque message */
+.message {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Couleurs et styles spécifiques pour chaque type de message */
+.message.success {
+    background-color: #4CAF50; /* Vert */
+    color: white;
+}
+
+.message.error {
+    background-color: #E74C3C; /* Rouge */
+    color: white;
+}
+
+/* Animation pour fadeIn */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Effet fadeOut pour disparition en douceur */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}
+
+/* Ajouter une petite icône pour indiquer le type de message (facultatif mais joli) */
+.message .icon {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+/* Animation pour la suppression du message */
+.message.fadeOut {
+    animation: fadeOut 0.5s forwards;
+}
+
+/* Media queries pour ajuster la position sur des écrans plus petits (comme les mobiles) */
+@media screen and (max-width: 768px) {
+    .messages {
+        top: 10vh; /* Pour les écrans plus petits, descendre un peu plus bas */
+        right: 10px; /* Moins d'espace sur les côtés */
+    }
+
+    .message {
+        padding: 12px;
+        font-size: 13px; /* Réduire légèrement la taille du texte */
+    }
+}
+
+/* Ajuster pour très petits écrans (comme les téléphones) */
+@media screen and (max-width: 480px) {
+    .messages {
+        top: 15vh; /* Ajouter plus d'espace en haut pour les petits écrans */
+        right: 5px;
+    }
+
+    .message {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
