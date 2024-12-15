@@ -2,47 +2,56 @@
 
 {% block content %}
 <div class="charte-container">
-    <h1>📜 Charte des règles d'utilisation</h1>
-    <p class="intro-text">
-        Bienvenue sur Vélyce ! Afin d'assurer une expérience agréable et efficace pour tous, merci de respecter les règles suivantes lors de l'utilisation de notre application.
-    </p>
-
-    <section class="charte-section">
-        <h2>🔒 Sécurité des informations</h2>
-        <p>
-            - Vos informations personnelles sont confidentielles et ne doivent pas être partagées avec d'autres utilisateurs.<br>
-            - En cas de problème lié à votre compte, contactez immédiatement un modérateur ou un administrateur.
+    <div class="charte-header">
+        <h1 class="charte-title">📜 Charte d’utilisation des « Vélyce »</h1>
+        <p class="charte-subtitle">
+            Garantissons ensemble une utilisation respectueuse et durable des Vélyce. 🚴‍♂️
         </p>
-    </section>
+    </div>
 
-    <section class="charte-section">
-        <h2>🚲 Utilisation responsable des vélos</h2>
-        <p>
-            - Assurez-vous de réserver un vélo uniquement lorsque vous en avez besoin.<br>
-            - Retournez le vélo dans les délais impartis pour éviter des désagréments aux autres utilisateurs.<br>
-            - Si un problème survient (panne, vol, etc.), signalez-le immédiatement via la section <a href="{% url 'signaler_incident' %}" class="charte-link">"Signaler un incident"</a>.
-        </p>
-    </section>
+    <div class="charte-content">
+        <div class="charte-image-container">
+            <img src="/static/images/logo_pgdg.png" alt="Photo des Vélyce" class="charte-image">
+        </div>
+        <div class="charte-rules">
+            <section class="charte-section">
+                <h2 class="section-title">🚲 Règles générales :</h2>
+                <ul class="charte-list">
+                    <li>Le vélo est un moyen de transport, pas un outil pour faire des figures ou du tout-terrain.</li>
+                    <li>Vérifiez l’état du vélo avant utilisation et signalez tout problème avant de partir.</li>
+                    <li>Respectez les équipements et les vélos, car ils sont financés par les actions des élèves.</li>
+                </ul>
+            </section>
 
-    <section class="charte-section">
-        <h2>📅 Gestion des réservations</h2>
-        <p>
-            - Vérifiez toujours vos réservations en cours dans l'application.<br>
-            - En cas d'annulation, annulez votre réservation à l'avance pour libérer le vélo pour d'autres utilisateurs.
-        </p>
-    </section>
+            <section class="charte-section">
+                <h2 class="section-title">⚠️ Responsabilités :</h2>
+                <ul class="charte-list">
+                    <li>Tout accident ou blessure relève de la responsabilité de l’utilisateur. Nous recommandons fortement le port du casque (non obligatoire).</li>
+                    <li>Des casques sont fournis gratuitement par l’établissement pour ceux qui souhaitent les utiliser.</li>
+                    <li>Attachez toujours le vélo lorsque vous le laissez quelque part. Les vols ou dégradations sont de la responsabilité de l’utilisateur.</li>
+                </ul>
+            </section>
 
-    <section class="charte-section">
-        <h2>🌱 Respect de l'environnement</h2>
-        <p>
-            - Prenez soin des vélos comme si c'était les vôtres.<br>
-            - Garez toujours les vélos dans les espaces dédiés pour éviter des désagréments.
-        </p>
-    </section>
+            <section class="charte-section">
+                <h2 class="section-title">⏱️ Respect des horaires :</h2>
+                <ul class="charte-list">
+                    <li>Respectez les horaires prévus lors de votre réservation en vie scolaire.</li>
+                    <li>En cas de retard, contactez le lycée au numéro indiqué et trouvez un moyen de retour par vous-même.</li>
+                </ul>
+            </section>
+
+            <section class="charte-section">
+                <h2 class="section-title">🛠️ En cas de problème :</h2>
+                <ul class="charte-list">
+                    <li>Signalez toute crevaison dès votre retour, surtout si vous avez utilisé une bombe anti-crevaison, pour préparer le vélo à une prochaine utilisation.</li>
+                </ul>
+            </section>
+        </div>
+    </div>
 
     <footer class="charte-footer">
         <p>
-            Merci de respecter ces règles pour garantir une utilisation optimale de Vélyce ! Ensemble, contribuons à un environnement plus propre et à un service fluide. 🚴‍♂️
+            Nous nous réservons le droit de suspendre l’accès aux vélos pour tout utilisateur ne respectant pas cette charte. Merci de votre compréhension !
         </p>
         <a href="{% url 'page_reservation' %}" class="back-button">Retour à la page d'accueil</a>
     </footer>

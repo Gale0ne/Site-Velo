@@ -818,85 +818,123 @@ table tr.avertissement_velo_non_rendu {
 }
 
 /* ----- Page Charte ----- */
-
 .charte-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 50px auto;
     padding: 30px;
-    background-color: #FFFFFF; /* Blanc */
+    background: linear-gradient(to bottom, #ffffff, #f9f9f9); /* Dégradé subtil */
     border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Roboto', Arial, sans-serif;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.6s ease-in-out;
+    font-family: 'Roboto', Arial, sans-serif;
 }
 
-.charte-container h1 {
-    font-size: 2em;
-    color: #4CAF50; /* Vert Forêt */
+/* ----- En-tête de la charte ----- */
+.charte-header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.charte-container .intro-text {
+.charte-title {
+    font-size: 2.5em;
+    color: #4CAF50; /* Vert Forêt */
+    margin: 0;
+}
+
+.charte-subtitle {
     font-size: 1.2em;
-    text-align: center;
     color: #2C3E50; /* Bleu Nuit */
+    margin-top: 10px;
+}
+
+/* ----- Image ----- */
+.charte-image-container {
+    text-align: center;
     margin-bottom: 30px;
-    line-height: 1.6;
+}
+
+.charte-image {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+}
+
+/* ----- Contenu des Règles ----- */
+.charte-rules {
+    padding: 0 20px;
 }
 
 .charte-section {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.charte-section h2 {
-    font-size: 1.5em;
+.section-title {
+    font-size: 1.8em;
     color: #388E3C; /* Vert foncé */
     margin-bottom: 10px;
+    border-left: 5px solid #4CAF50;
+    padding-left: 15px;
 }
 
-.charte-section p {
-    font-size: 1.1em;
-    line-height: 1.6;
+.charte-list {
+    list-style: none;
+    padding-left: 0;
+    line-height: 1.8;
     color: #2C3E50; /* Bleu Nuit */
 }
 
-.charte-section a.charte-link {
-    color: #FFC107; /* Jaune Soleil */
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+.charte-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
 }
 
-.charte-section a.charte-link:hover {
-    color: #FFB300; /* Jaune légèrement plus foncé */
-    text-shadow: 0px 0px 5px #FFC107;
+.charte-list li::before {
+    content: "✔️";
+    position: absolute;
+    left: 0;
+    color: #4CAF50; /* Vert Forêt */
+    font-size: 1.2em;
 }
 
+/* ----- Pied de page ----- */
 .charte-footer {
     text-align: center;
     margin-top: 30px;
+    padding-top: 20px;
     font-size: 1em;
+    border-top: 1px solid #ddd;
     color: #2C3E50; /* Bleu Nuit */
 }
 
 .charte-footer .back-button {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 10px 20px;
     font-size: 14px;
     font-weight: bold;
     color: #FFFFFF; /* Blanc */
     background-color: #4CAF50; /* Vert Forêt */
-    border-radius: 5px;
+    border-radius: 25px;
     text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .charte-footer .back-button:hover {
     background-color: #388E3C; /* Vert légèrement plus sombre */
-    transform: scale(1.05);
+    transform: translateY(-3px); /* Légère élévation */
+}
+
+#accept-terms-button:disabled {
+    background-color: #cccccc; /* Gris clair */
+    color: #666666; /* Gris foncé */
+    cursor: not-allowed; /* Curseur désactivé */
+    box-shadow: none; /* Pas d'ombre */
 }
 
 /* --- Styles messages---  */

@@ -35,6 +35,17 @@
                 }, 3000); // 3 secondes avant la disparition
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkbox = document.getElementById('accept-terms-checkbox');
+            const submitButton = document.getElementById('accept-terms-button');
+
+            checkbox.addEventListener('change', function () {
+                // Activer le bouton si la case est cochée
+                submitButton.disabled = !checkbox.checked;
+            });
+        });
+
     </script>
     
     
